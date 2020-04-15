@@ -30,7 +30,7 @@ const [totalCases,setTotalCases] = useState('loading...');
         setTotalCases(response.data.latest_stat_by_country[0].total_cases);
       })
       .catch((error)=>{
-        console.log(error)
+        console.log(`Cannot connect to API: ${error}`)
       })
   }, [])
 
@@ -40,7 +40,8 @@ const [totalCases,setTotalCases] = useState('loading...');
       <div><p>Hospitalizowani: {inHospital} </p> </div>
       <div><p>Stan krytyczny: {criticalCases}</p> </div>
       <div><p>Zgony: {totalDeaths} </p></div>
-      <div>Łącznie: {totalCases}</div>
+      <div><p>Łącznie: {totalCases}</p></div>
+      <Signature>created by wrogoz</Signature>
     </Container>
   );
 }
@@ -54,18 +55,35 @@ const [totalCases,setTotalCases] = useState('loading...');
     flex-direction:column;
 
     div{
+
       display:flex;
       align-items:center;
       justify-content:center;
       width:100%;
       height:20%;
       border-bottom:1px dotted grey ;
-
+      &:nth-of-type(2n+1){
+        background-color:#696758;
+      }
+      &:nth-of-type(2n){
+        background-color:#45484B;
+      }
 
       p{
+        color:#EEE6AB;
+        font-size: 1.5rem;
+        text-transform:uppercase;
         padding:0;
         margin:0;
       }
     }
+  `
+  const Signature = styled.p`
+    position:absolute;
+    bottom: 60px;
+    right: -44px;
+    transform: rotate(-90deg);
+    color: #C5BC8E;
+    font-size: 0.8rem;
   `
 export default App;
